@@ -2,7 +2,9 @@ pipeline {
     agent { dockerfile true }
     stages {
         stage('Preparation') {
-            git 'https://github.com/quasi-ninja/docker-test.git'
+           steps {
+              git 'https://github.com/quasi-ninja/docker-test.git'
+           }
         }
         stage('Test') {
             steps {
