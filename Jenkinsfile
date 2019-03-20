@@ -1,16 +1,18 @@
-pipeline {
-    agent { dockerfile true }
-    stages {
-        stage('Preparation') {
-           steps {
-              git 'https://github.com/quasi-ninja/docker-test.git'
-           }
-        }
-        stage('Test') {
-            steps {
-                sh 'node --version'
-                sh 'svn --version'
-            }
-        }
+node {
+
+    stage('Initialize')
+    {
+        def dockerHome = tool 'MyDocker'
+        env.PATH = "${dockerHome}/bin:${env.PATH}"
     }
+
+      stage('Build') 
+           {
+            sh 'uname -a'
+          }
+
+        stage('Test') 
+        {
+            sh 'ifconfig' 
+        }
 }
