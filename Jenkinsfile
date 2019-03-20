@@ -9,6 +9,7 @@ node {
       stage('Build') 
            {
             sh 'uname -a'
+            docker build .
           }
 
         stage('Test') 
