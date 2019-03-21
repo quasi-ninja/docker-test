@@ -1,0 +1,13 @@
+  stages:
+    - build
+    - scan
+
+  variables:
+    TWISTLOCK_PASS: R4bbithole
+  docker_build:
+    stage: build
+    script: docker build -t docker-test:1.0 .
+
+  twistlock_scan:
+    stage: scan
+    script: /usr/local/bin/twistcli images scan --address https://console-twistlock.development.preview.stp.hmlr.zone/ --user peter --password ${TWISTLOCK_PASS} docker-test:1.0

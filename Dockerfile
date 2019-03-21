@@ -1,3 +1,3 @@
-FROM ubuntu:cosmic
+FROM ubuntu:xenial
 
 CMD /bin/bash
