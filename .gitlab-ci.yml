@@ -1,13 +1,18 @@
   stages:
     - build
     - scan
+    - push
 
   variables:
-    TWISTLOCK_PASS: R4bbithole
+    TWISTLOCK_PASS: cellophane-wrapped-chicken
   docker_build:
     stage: build
-    script: docker build -t docker-test:1.0 .
+    script: docker build -t docker-registry-default.development.preview.stp.hmlr.zone/default/docker-test:1.0 .
 
   twistlock_scan:
     stage: scan
     script: /usr/local/bin/twistcli images scan --address https://console-twistlock.development.preview.stp.hmlr.zone/ --user peter --password ${TWISTLOCK_PASS} docker-test:1.0
+
+  docker_push:
+    stage: push
+    script: docker push docker-test:1.0 docker-registry-default.development.preview.stp.hmlr.zone/default/docker-test:1.0
